@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SYFramework
 {
-    public class KillOneEnemyEvent : Event<KillOneEnemyEvent>
-    {
+    //public class KillOneEnemyEvent : Event<KillOneEnemyEvent>
+    //{
      
-    }
+    //}
 
 }

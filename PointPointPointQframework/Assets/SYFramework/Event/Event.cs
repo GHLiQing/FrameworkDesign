@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SYFramework
+namespace SYFramework.Event
 {
 	/// <summary>
 	/// 事件扩展 

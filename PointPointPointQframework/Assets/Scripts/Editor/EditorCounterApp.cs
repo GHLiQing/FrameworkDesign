@@ -5,7 +5,7 @@ using UnityEditor;
 using UniRx;
 namespace SYFramework
 {
-	public class EditorCounterApp : EditorWindow
+	public class EditorCounterApp : EditorWindow,IController
 	{
 		
 		[MenuItem("LQ/EditorcounterOpen")]
@@ -30,7 +30,7 @@ namespace SYFramework
 		{
 			if (GUILayout.Button("+"))
 			{
-				new AddCounterCommand().OnExecute();
+				this.SendCommand<AddCounterCommand>();
 			}
 	
 			mCounterModel.Count.Subscribe(mcounter=>{
@@ -40,9 +40,14 @@ namespace SYFramework
 
 			if (GUILayout.Button("-"))
 			{
-				new SubCounterCommand().OnExecute();
+				this.SendCommand<SubCounterCommand>();
 			}
 
+		}
+
+		IArchitecture IBelongToArchitecture.GetArchitecture()
+		{
+			return CounterGame.Interface;
 		}
 	}
 

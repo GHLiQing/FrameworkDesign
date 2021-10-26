@@ -6,17 +6,19 @@ using UniRx;
 namespace  SYFramework
 {
     
-    public class UI : MonoBehaviour
+    public class UI : MonoBehaviour,IController
     {
 
         private GameObject gameOverPanel;
         private void Awake()
         {
             gameOverPanel = transform.Find("GameOverPanel").gameObject;
-            GameOverEevent.Register(GameOverCallback);          
+          
+
+			this.RegisterEvent<GameOverEevent>(GameOverCallback);
         }
         
-        private void GameOverCallback()
+        private void GameOverCallback(GameOverEevent gameOverEevent)
         {
             gameOverPanel.SetActive(true);
         }
@@ -26,7 +28,7 @@ namespace  SYFramework
 		{
 #if UNITY_EDITOR
 			//测试代码
-			var gamemodel = PointGame.Get<IGameMode>();
+			var gamemodel = this.GetModel<IGameMode>();
 
 			string countkill = "";
 			gamemodel.KillCount.Subscribe(_ => { countkill = _.ToString(); }).AddTo(this);
@@ -38,8 +40,13 @@ namespace  SYFramework
 
 		private void OnDestroy()
         {
-            GameOverEevent.UnRegister(GameOverCallback);
+			this.UnRegisterEvent<GameOverEevent>(GameOverCallback);
         }
-    }
+
+		IArchitecture IBelongToArchitecture.GetArchitecture()
+		{
+			return PointGame.Interface;
+		}
+	}
 
 }

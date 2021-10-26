@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 namespace  SYFramework
 {
-    public  class GameOverEevent:Event<GameOverEevent>
+    public  struct GameOverEevent
     {
 
     }

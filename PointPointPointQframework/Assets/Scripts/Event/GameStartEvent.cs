@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 namespace  SYFramework
 {
-    public  class GameStartEvent:Event<GameStartEvent>
+    public  struct GameStartEvent
     {
       
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-namespace SYFramework
+namespace SYFramework.Design
 {
 
     public class TypeEventSystem

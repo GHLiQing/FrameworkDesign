@@ -23,7 +23,7 @@ namespace SYFramework
 		public override void OnExecute()
 		{
 			//获得实例
-			var gamemodel = PointGame.Get<IGameMode>();
+			var gamemodel = this.GetModel<IGameMode>();
 			gamemodel.KillCount.Value++;
 
 			gamemodel.KillCount
@@ -32,7 +32,7 @@ namespace SYFramework
 					if (values == 10)
 					{
 
-						new GameOverEventCommand().OnExecute();
+						this.SendEvent<GameOverEevent>();
 					}
 				});
 		}
@@ -48,15 +48,16 @@ namespace SYFramework
 		/// </summary>
 		public override void OnExecute()
 		{
-			var gamemodel = PointGame.Get<IGameMode>();
+			var gamemodel = this.GetModel<IGameMode>();
 			gamemodel.KillCount.Value--;
 			gamemodel.KillCount
 				.Subscribe(values =>
 				{
 					if (values == 0)
 					{
-
-						new GameOverEventCommand().OnExecute();
+						//GameOverEevent.Trigger();
+						//new GameOverEventCommand().OnExecute();
+						this.SendEvent<GameOverEevent>();
 					}
 				});
 		}

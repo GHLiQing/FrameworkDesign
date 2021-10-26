@@ -12,7 +12,8 @@ namespace SYFramework
         
 		public override void OnExecute()
 		{
-			GameStartEvent.Trigger();
+			//GameStartEvent.Trigger();
+			this.SendEvent<GameStartEvent>();
 		}
 	}
 

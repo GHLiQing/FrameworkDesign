@@ -17,8 +17,8 @@ namespace SYFramework
             Destroy(gameObject);
 
 			//进行了一层封装
-			 //new AddKillCountCommand().OnExecute(); //3 
-			GetArchitecture().SendCommand<AddKillCountCommand>();
+			
+			this.SendCommand<AddKillCountCommand>();
         }
     }
 }

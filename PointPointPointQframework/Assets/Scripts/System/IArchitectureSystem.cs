@@ -18,7 +18,8 @@ namespace SYFramework
 
 		protected override void OnInit()
 		{
-			var coutemodel = GetArchitecture().GetModel<ICounterModel>();
+			//封装一层
+			var coutemodel =this.GetModel<ICounterModel>();
 
 			var late = coutemodel.Count.Value;
 

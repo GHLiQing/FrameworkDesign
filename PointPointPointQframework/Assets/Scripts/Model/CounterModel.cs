@@ -11,7 +11,7 @@ namespace SYFramework
 		protected override void OnInit()
 		{
 			//通过Architecture 获取
-			var istorage = GetArchitecture().GetUtility<IStorage>();
+			var istorage = this.GetUtility<IStorage>();
 			
 			Count.Value = istorage.LoadInt("Counter",0);
 

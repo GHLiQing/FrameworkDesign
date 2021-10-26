@@ -8,19 +8,27 @@ namespace SYFramework
 	/// <summary>
 	/// 系统层
 	/// </summary>
-	public interface ISystem: IBelongToArchitecture, ICanSetArchitecture
+	public interface ISystem: IBelongToArchitecture, ICanSetArchitecture,ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent
 	{
 		void Init();
 	}
 	public abstract class AbstractSystem : ISystem
 	{
 		private IArchitecture mArchitecture = null;//互相持有 关联
-		public IArchitecture GetArchitecture()
+		/// <summary>
+		/// 接口阉割
+		/// </summary>
+		/// <returns></returns>
+		IArchitecture IBelongToArchitecture.GetArchitecture()
 		{
 			return mArchitecture;
 		}
 
-		public void SetArchitecture(IArchitecture architecture) //互相持有 依赖
+		/// <summary>
+		/// 接口阉割
+		/// </summary>
+		/// <param name="architecture"></param>
+		void ICanSetArchitecture.SetArchitecture(IArchitecture architecture) //互相持有 依赖
 		{
 			mArchitecture = architecture;
 		}

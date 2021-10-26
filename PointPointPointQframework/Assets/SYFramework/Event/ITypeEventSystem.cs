@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-namespace SYFramework.Design
+namespace SYFramework
 {
 	/// <summary>
 	/// 用于注销

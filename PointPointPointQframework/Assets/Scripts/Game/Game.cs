@@ -6,20 +6,26 @@ using UnityEngine;
 
 namespace SYFramework
 {
-    public class Game : MonoBehaviour
+    public class Game : MonoBehaviour,IController
     {
-        private void Awake()
+		public IArchitecture GetArchitecture()
+		{
+			return PointGame.Interface;
+		}
+
+		private void Awake()
         {
-            #region 注册 事件
+			#region 注册 事件
 
-            GameStartEvent.Register(GameStartEventCallback);
+			//  GameStartEvent.Register(GameStartEventCallback);
 
+			this.RegisterEvent<GameStartEvent>(GameStartEventCallback);
             #endregion
             
         }
 
         #region 回调 事件 
-        private void GameStartEventCallback()
+        private void GameStartEventCallback(GameStartEvent gameStartEvent)
         {
            transform.Find("Enemris").gameObject.SetActive(true);
         }
@@ -29,9 +35,11 @@ namespace SYFramework
        
         private void OnDestroy()
         {
-            #region 取消注册
-            GameStartEvent.UnRegister(GameStartEventCallback);
-           
+			#region 取消注册
+			//GameStartEvent.UnRegister(GameStartEventCallback);
+
+
+			this.UnRegisterEvent<GameStartEvent>(GameStartEventCallback);
             #endregion
             
         }

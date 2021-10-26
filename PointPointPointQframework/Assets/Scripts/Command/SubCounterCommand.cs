@@ -12,7 +12,7 @@ namespace SYFramework
 		/// </summary>
 		public override void OnExecute()
 		{
-			GetArchitecture().GetModel<ICounterModel>().Count.Value--;
+			this.GetModel<ICounterModel>().Count.Value--;
 		}
 	}
 

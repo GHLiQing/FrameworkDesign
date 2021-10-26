@@ -24,11 +24,11 @@ namespace  SYFramework
 
 				//无参的事件  跨模块 使用事件 解耦合
 
-				GetArchitecture().SendCommand<GameStartEventCommand>();
+				this.SendCommand<GameStartEventCommand>();
             });
         }
 
-		public IArchitecture GetArchitecture()
+		IArchitecture IBelongToArchitecture. GetArchitecture()
 		{
 			return PointGame.Interface;
 		}

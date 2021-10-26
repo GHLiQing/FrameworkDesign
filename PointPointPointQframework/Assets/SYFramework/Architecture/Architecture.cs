@@ -31,7 +31,7 @@ namespace SYFramework
 		}
 		#endregion
 
-		#region model system
+		#region model and system
 		/// <summary>
 		/// 是否已经初始化完成
 		/// </summary>
@@ -100,9 +100,61 @@ namespace SYFramework
 			return mContainer.Get<T>();
 		}
 
-		
+
+		public T GetSystem<T>() where T:class,ISystem
+		{
+			return mContainer.Get<T>();
+		}
 
 		#endregion 类似于单例模式 尽在内部访问
+		#region Utility
+
+		/// <summary>
+		/// 注册Utility
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="instance"></param>
+		public void RegisterUtility<T>(T instance) where T : IUtility
+		{
+			mContainer.Regitser<T>(instance);
+		}
+
+
+		/// <summary>
+		/// 获取 工具类
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public T GetUtility<T>() where T : class, IUtility
+		{
+			return mContainer.Get<T>();
+		}
+		#endregion
+
+		#region Command
+		/// <summary>
+		/// 发送命令
+		/// </summary>
+		/// <typeparam name="T1"></typeparam>
+		public void SendCommand<T>() where T : ICommand, new()
+		{
+			var command = new T();
+			command.SetArchitecture(this);
+			command.Execute();
+		}
+		/// <summary>
+		/// 发送命令
+		/// </summary>
+		/// <typeparam name="T1"></typeparam>
+		/// <param name="command"></param>
+		public void SendCommand<T>(T command) where T : ICommand
+		{
+			command.SetArchitecture(this);
+			command.Execute();
+		}
+		#endregion
+
+		
 
 		//增加注册
 		public static Action<T> OnRegsiterPath = architeture => { };
@@ -145,14 +197,36 @@ namespace SYFramework
 
 				mArchitecture.mInited = true;
 
-
 			}
         }
 
+		#region 事件
+
+		private ITypeEventSystem typeEventSystem = new TypeEventSystem();
+		public void SendEvent<T>() where T : new()
+		{
+			typeEventSystem.Send<T>();
+		}
+
+		public void SendEvent<T>(T e)
+		{
+			typeEventSystem.Send<T>(e);
+		}
+
+		public IUnRegister RegisterEvent<T>(Action<T> onEvent)
+		{
+			return typeEventSystem.Register<T>(onEvent);
+		}
+
+		public void UnRegisterEvent<T>(Action<T> onEvent)
+		{
+			typeEventSystem.UnRegister<T>(onEvent);
+		}
+
+		#endregion
 
 		#region IOC
 
-	
 		/// <summary>
 		/// ioc容器
 		/// </summary>
@@ -175,26 +249,7 @@ namespace SYFramework
             mArchitecture.mContainer.Regitser(instance);
         }
 
-		/// <summary>
-		/// 注册Utility
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="instance"></param>
-		public void RegisterUtility<T>(T instance) where T:IUtility
-		{
-			mContainer.Regitser<T>(instance);
-		}
-
-
-		/// <summary>
-		/// 获取 工具类
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-		public T GetUtility<T>() where T : class,IUtility
-		{
-			return mContainer.Get<T>();
-		}
+		
 		/// <summary>
 		/// 获取模块
 		/// </summary>
@@ -206,26 +261,9 @@ namespace SYFramework
             return mArchitecture.mContainer.Get<T>();
         }
 
-		/// <summary>
-		/// 发送命令
-		/// </summary>
-		/// <typeparam name="T1"></typeparam>
-		public void SendCommand<T>() where T : ICommand, new()
-		{
-			var command = new T();
-			command.SetArchitecture(this);
-			command.Execute();
-		}
-		/// <summary>
-		/// 发送命令
-		/// </summary>
-		/// <typeparam name="T1"></typeparam>
-		/// <param name="command"></param>
-		public void SendCommand<T>(T command) where T : ICommand
-		{
-			command.SetArchitecture(this);
-			command.Execute();
-		}
+		
+
+
 		#endregion
 
 	}

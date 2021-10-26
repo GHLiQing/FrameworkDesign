@@ -18,7 +18,7 @@ namespace SYFramework
 
 		protected override void Init()
 		{
-			Register<IGameMode>(new GameModel());
+			RegisterModel<IGameMode>(new GameModel());
 			//Register<IGameMode>(new GameModel()); 继续注册模块
 		}
 	}

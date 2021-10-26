@@ -37,8 +37,8 @@ namespace SYFramework
 
 		private void ModelDate()
 		{
-			//mCounterModel = CounterGame.Get<ICounterModel>();
-			mCounterModel = GetArchitecture().GetModel<ICounterModel>();
+			
+			mCounterModel = this.GetModel<ICounterModel>();
 
 			//表现逻辑
 			mCounterModel.Count.Subscribe(counter =>
@@ -46,6 +46,7 @@ namespace SYFramework
 				count_Txt.text = counter.ToString();
 			});
 
+			
 		}
 
 		private void Register()
@@ -53,18 +54,22 @@ namespace SYFramework
 			add_Btn.onClick.AddListener(()=> {
 
 				//交互逻辑
-				GetArchitecture().SendCommand<AddCounterCommand>();
+				this.SendCommand<AddCounterCommand>();
 			});
 
 			sub_Btn.onClick.AddListener(() => {
 				//交互逻辑
-				GetArchitecture().SendCommand<SubCounterCommand>();
+				this.SendCommand<SubCounterCommand>();
 
 			});
 
 		}
 
-		public IArchitecture GetArchitecture() // 修改
+		/// <summary>
+		/// 接口阉割
+		/// </summary>
+		/// <returns></returns>
+		IArchitecture IBelongToArchitecture. GetArchitecture() // 修改
 		{
 			
 			return CounterGame.Interface;

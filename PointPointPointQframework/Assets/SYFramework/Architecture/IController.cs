@@ -9,7 +9,7 @@ namespace SYFramework
 	/// view 类继承这个接口进行重写 
 	/// 获取方式：单例
 	/// </summary>
-	public interface IController : IBelongToArchitecture
+	public interface IController : IBelongToArchitecture,ICanGetModel,ICanGetSystem,ICanSendCommand,ICanRegisterEvent
 	{
 		
 	}
