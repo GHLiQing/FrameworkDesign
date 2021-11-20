@@ -7,6 +7,9 @@ namespace SYFramework
 
 	/// <summary>
 	/// 系统层
+	/// 使用规则：
+	/// ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent
+	/// 继承了这些接口就可以使用这些功能
 	/// </summary>
 	public interface ISystem: IBelongToArchitecture, ICanSetArchitecture,ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent
 	{

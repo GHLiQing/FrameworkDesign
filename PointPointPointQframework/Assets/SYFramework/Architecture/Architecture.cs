@@ -107,6 +107,7 @@ namespace SYFramework
 		}
 
 		#endregion 类似于单例模式 尽在内部访问
+
 		#region Utility
 
 		/// <summary>

@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace SYFramework
 {
+
+	/// <summary>
+	/// 获取Architecture
+	/// </summary>
 	public interface IBelongToArchitecture
 	{
 		IArchitecture GetArchitecture();

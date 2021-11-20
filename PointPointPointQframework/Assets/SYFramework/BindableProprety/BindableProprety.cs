@@ -4,30 +4,30 @@ using UnityEngine;
 using System;
 namespace SYFramework
 {
-	public class BindableProprety<T> : IEquatable<T>
+
+	/// <summary>
+	/// 响应式属性
+	/// int  等类型
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public class BindableProprety<T> where T : IEquatable<T>
 	{
-		private T values;
+		private T mValues;
 
 		public T Valuse
 		{
-			get => values;
+			get => mValues;
 			set
 			{
-				if (!values.Equals(value))
+				if (!mValues.Equals(value))
 				{
-					values = value;
-					onCallback?.Invoke(value);
+					mValues = value;
+					OnValueChanged?.Invoke(value);
 				}
 			}
 		}
 
-
-		public bool Equals(T other)
-		{
-			return false;
-		}
-
-		public Action<T> onCallback;
+		public Action<T> OnValueChanged;
 	}
 
 }

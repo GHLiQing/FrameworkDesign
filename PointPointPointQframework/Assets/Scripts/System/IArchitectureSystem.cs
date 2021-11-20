@@ -14,12 +14,12 @@ namespace SYFramework
 
 	public class ArchitectureSystem : AbstractSystem,IArchitectureSystem
 	{
-		
 
 		protected override void OnInit()
 		{
 			//封装一层
 			var coutemodel =this.GetModel<ICounterModel>();
+			
 
 			var late = coutemodel.Count.Value;
 

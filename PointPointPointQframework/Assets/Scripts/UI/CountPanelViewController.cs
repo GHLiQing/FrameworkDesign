@@ -47,6 +47,13 @@ namespace SYFramework
 			});
 
 			
+			mCounterModel.ModelName.OnValueChanged = name =>
+			{
+
+				Debug.Log("测试 modelName:" + name);
+			};
+
+
 		}
 
 		private void Register()
@@ -60,6 +67,8 @@ namespace SYFramework
 			sub_Btn.onClick.AddListener(() => {
 				//交互逻辑
 				this.SendCommand<SubCounterCommand>();
+				//测试
+				mCounterModel.ModelName.Valuse =100;
 
 			});
 

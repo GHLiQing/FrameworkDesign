@@ -5,13 +5,9 @@ using UnityEngine;
 
 namespace SYFramework
 {
-    public class Enemy : MonoBehaviour,IController
+    public class Enemy : PointPointGame
     {
-		public IArchitecture GetArchitecture()
-		{
-			return PointGame.Interface;
-		}
-
+		
 		private void OnMouseDown()
         {
             Destroy(gameObject);

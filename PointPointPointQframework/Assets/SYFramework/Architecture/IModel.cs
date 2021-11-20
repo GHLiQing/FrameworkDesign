@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace SYFramework
 {
+	/// <summary>
+	/// model职能：
+	/// ICanSetArchitecture,ICanGetUtility,ICanSendEvent
+	/// 看后面继承了哪些接口就可以使用哪些功能
+	/// </summary>
 	public interface IModel:IBelongToArchitecture, ICanSetArchitecture,ICanGetUtility,ICanSendEvent
 	{
 		void Init();

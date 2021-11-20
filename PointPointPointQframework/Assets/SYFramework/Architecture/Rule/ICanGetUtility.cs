@@ -10,7 +10,7 @@ namespace SYFramework
 	}
 
 	/// <summary>
-	/// 静态扩展
+	/// 添加使用规则 ：需要使用Utility接口的实现ICanGetUtility即可
 	/// </summary>
 	public static class CanGetUtilityExtension
 	{
