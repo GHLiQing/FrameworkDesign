@@ -12,9 +12,9 @@ namespace SYFramework
 	/// </summary>
 	public interface ICounterModel: IModel
 	{   
-		 ReactiveProperty<int> Count{ get; }
+		ReactiveProperty<int> Count{ get; }
 
-		BindableProprety<int> ModelName { get; }
+		BindableProprety<int> Gold { get; }
 	}
 
 	public class CounterModel : AbstractModel, ICounterModel
@@ -42,7 +42,8 @@ namespace SYFramework
 
 		};
 
-		public BindableProprety<int> ModelName { get; } = new BindableProprety<int>()
+	
+		public BindableProprety<int> Gold { get; } = new BindableProprety<int>()
 		{
 			Valuse = 0
 		};

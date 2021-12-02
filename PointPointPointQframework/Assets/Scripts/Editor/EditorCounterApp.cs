@@ -17,7 +17,7 @@ namespace SYFramework
 			editorwindow.name = nameof(EditorCounterApp).ToString();
 
 
-			mCounterModel = CounterGame.Get<ICounterModel>();
+		
 
 			editorwindow.Show();
 
@@ -28,6 +28,8 @@ namespace SYFramework
 
 		private void OnGUI()
 		{
+			mCounterModel = this.GetModel<ICounterModel>();
+
 			if (GUILayout.Button("+"))
 			{
 				this.SendCommand<AddCounterCommand>();

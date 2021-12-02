@@ -39,7 +39,7 @@ namespace SYFramework
 				//new AddKillCountCommand().OnExecute();
 				GetArchitecture().SendCommand<AddKillCountCommand>();
 			}
-			var gameModel = CounterGame.Get<ICounterModel>();
+			var gameModel = this.GetModel<ICounterModel>();
 			string count="";
 			gameModel.Count.Subscribe(countvalues => {
 				count = countvalues.ToString();

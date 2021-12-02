@@ -11,6 +11,7 @@ namespace SYFramework
 		public override void OnExecute()
 		{
 			this.GetModel<ICounterModel>().Count.Value++;
+			
 		}
 	}
 

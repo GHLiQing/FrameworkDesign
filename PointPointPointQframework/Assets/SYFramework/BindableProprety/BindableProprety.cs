@@ -7,10 +7,10 @@ namespace SYFramework
 
 	/// <summary>
 	/// 响应式属性
-	/// int  等类型
+	/// int   等类型
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class BindableProprety<T> where T : IEquatable<T>
+	public class BindableProprety<T> where T:IEquatable<T>
 	{
 		private T mValues;
 
@@ -27,7 +27,41 @@ namespace SYFramework
 			}
 		}
 
-		public Action<T> OnValueChanged;
+		public Action<T> OnValueChanged=(v)=> { };
+
+		/// <summary>
+		/// 返回值用于调用UnRegister 方法取消注册 
+		/// </summary>
+		/// <param name="onValueChanged"></param>
+		/// <returns></returns>
+		public IUnRegister Register(Action<T> onValueChanged)
+		{
+			OnValueChanged += onValueChanged;
+			return new BindablePropretyUnRegister<T>()
+			{
+				BindableProprety = this,
+				OnValueChanged = onValueChanged
+			};
+		}
+
+		
+		public void UnRegisterOnValueChanged(Action<T> onValueChanged)
+		{
+			OnValueChanged -= onValueChanged;
+		}
+
+	}
+
+	public class BindablePropretyUnRegister<T> : IUnRegister where T : IEquatable<T>
+	{
+		public BindableProprety<T> BindableProprety { get; set; } //互相引用
+
+		public Action<T> OnValueChanged { get; set; }
+
+		public void UnRegister()
+		{
+			BindableProprety.UnRegisterOnValueChanged(OnValueChanged);
+		}
 	}
 
 }

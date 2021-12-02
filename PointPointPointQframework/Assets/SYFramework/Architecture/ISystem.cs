@@ -11,7 +11,7 @@ namespace SYFramework
 	/// ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent
 	/// 继承了这些接口就可以使用这些功能
 	/// </summary>
-	public interface ISystem: IBelongToArchitecture, ICanSetArchitecture,ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent
+	public interface ISystem: IBelongToArchitecture, ICanSetArchitecture,ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent,ICanGetSystem
 	{
 		void Init();
 	}

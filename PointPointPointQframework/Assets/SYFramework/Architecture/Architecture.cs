@@ -252,11 +252,12 @@ namespace SYFramework
 
 		
 		/// <summary>
-		/// 获取模块
+		/// 丢弃
+		/// 获取模块 
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
-		public  static  T Get<T>() where  T: class
+		private  static  T Get<T>() where  T: class
         {
             MakeSureArchitecture();
             return mArchitecture.mContainer.Get<T>();

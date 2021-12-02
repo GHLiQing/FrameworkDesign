@@ -46,13 +46,10 @@ namespace SYFramework
 				count_Txt.text = counter.ToString();
 			});
 
-			
-			mCounterModel.ModelName.OnValueChanged = name =>
-			{
+			mCounterModel.Gold.OnValueChanged = gold => {
 
-				Debug.Log("测试 modelName:" + name);
+				Debug.Log("Golde:"+gold);
 			};
-
 
 		}
 
@@ -67,8 +64,8 @@ namespace SYFramework
 			sub_Btn.onClick.AddListener(() => {
 				//交互逻辑
 				this.SendCommand<SubCounterCommand>();
-				//测试
-				mCounterModel.ModelName.Valuse =100;
+
+				this.SendCommand<GoldEventCommand>();
 
 			});
 
