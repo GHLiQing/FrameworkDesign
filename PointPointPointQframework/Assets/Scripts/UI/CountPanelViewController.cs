@@ -46,11 +46,18 @@ namespace SYFramework
 				count_Txt.text = counter.ToString();
 			});
 
-			mCounterModel.Gold.OnValueChanged = gold => {
+		
+			mCounterModel.Gold.Register(gold => {
 
-				Debug.Log("Golde:"+gold);
+				Debug.Log("Golde:" + gold);
+			}).UnRegisterWhenGameObjectDsetroyed(gameObject);
+
+
+			mCounterModel.Name.OnValueChanged = name =>
+			{
+
+				Debug.Log(name);
 			};
-
 		}
 
 		private void Register()
@@ -59,6 +66,8 @@ namespace SYFramework
 
 				//交互逻辑
 				this.SendCommand<AddCounterCommand>();
+
+				this.GetModel<ICounterModel>().Name.Valuse = "小红";
 			});
 
 			sub_Btn.onClick.AddListener(() => {

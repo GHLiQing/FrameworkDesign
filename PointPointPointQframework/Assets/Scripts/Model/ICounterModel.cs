@@ -15,6 +15,8 @@ namespace SYFramework
 		ReactiveProperty<int> Count{ get; }
 
 		BindableProprety<int> Gold { get; }
+
+		BindableProprety<string> Name { get; }
 	}
 
 	public class CounterModel : AbstractModel, ICounterModel
@@ -46,6 +48,10 @@ namespace SYFramework
 		public BindableProprety<int> Gold { get; } = new BindableProprety<int>()
 		{
 			Valuse = 0
+		};
+		public BindableProprety<string> Name { get; } = new BindableProprety<string>
+		{
+			Valuse = string.Empty
 		};
 	}
 }

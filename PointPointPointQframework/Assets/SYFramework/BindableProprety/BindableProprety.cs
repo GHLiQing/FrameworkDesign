@@ -7,10 +7,10 @@ namespace SYFramework
 
 	/// <summary>
 	/// 响应式属性
-	/// int   等类型
+	/// int string  等类型
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class BindableProprety<T> where T:IEquatable<T>
+	public class BindableProprety<T>
 	{
 		private T mValues;
 
@@ -19,11 +19,8 @@ namespace SYFramework
 			get => mValues;
 			set
 			{
-				if (!mValues.Equals(value))
-				{
-					mValues = value;
-					OnValueChanged?.Invoke(value);
-				}
+				mValues = value;
+				OnValueChanged?.Invoke(value);
 			}
 		}
 
@@ -52,7 +49,7 @@ namespace SYFramework
 
 	}
 
-	public class BindablePropretyUnRegister<T> : IUnRegister where T : IEquatable<T>
+	public class BindablePropretyUnRegister<T> : IUnRegister
 	{
 		public BindableProprety<T> BindableProprety { get; set; } //互相引用
 
